@@ -37,3 +37,4 @@ C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp\obj\
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp\obj\Debug\net5.0\ContactReportApp.pdb
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp\obj\Debug\net5.0\ContactReportApp.genruntimeconfig.cache
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp\obj\Debug\net5.0\ContactReportApp.csproj.CopyComplete
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp\obj\Debug\net5.0\ContactReportApp.csproj.AssemblyReference.cache

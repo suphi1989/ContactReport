@@ -19,6 +19,8 @@ namespace ContactReportApp.ContactApi.Controllers
         [HttpGet]
         public List<string> Get()
         {
+            //var connection = new Npgsql.NpgsqlConnection("Server=localhost;Database=postgres;Port=5432;User Id=postgres;Password=1234;Pooling=false;");
+            //connection.Open();
             return new List<string>() { "1", "2", "3" };
         }
     }
