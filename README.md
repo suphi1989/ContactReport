@@ -1,2 +1,2 @@
 # ContactReport
-Contact Report Project about two rest api to get all people that have the same adress.
+Contact Report Project about two rest api to get all people with have the same adress.
