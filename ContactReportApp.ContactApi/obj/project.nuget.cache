@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jik/GN50pO8eGTjVrIoQnPdzBd+Bo2v6iYcCmI+fSSHdz/5CU/2SrUcQOIEoAQPycEJid9NwZN0qmI69Hx0V1A==",
+  "dgSpecHash": "I2J+8iEgzrpW+jcomnJLbvdoWkonBahEZBn6jYSQjuEkIo3Ndbtr+ZTQLQYjjnIZ2nihYsMTCl4j4XHV1iIl1Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp.ContactApi\\ContactReportApp.ContactApi.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,7 @@
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.0\\npgsql.entityframeworkcore.postgresql.5.0.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",

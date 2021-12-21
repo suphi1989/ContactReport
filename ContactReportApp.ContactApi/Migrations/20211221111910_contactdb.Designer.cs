@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactReportApp.ContactApi.Migrations
 {
-    [DbContext(typeof(ContactDBEntities))]
+    [DbContext(typeof(ContactDBContext))]
     [Migration("20211221111910_contactdb")]
     partial class contactdb
     {

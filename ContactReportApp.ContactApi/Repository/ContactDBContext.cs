@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace ContactReportApp.ContactApi.Repository
 {
-    public class ContactDBEntities : DbContext
+    public class ContactDBContext : DbContext
     {
-        public ContactDBEntities(DbContextOptions<ContactDBEntities> options) : base(options) 
+        public ContactDBContext(DbContextOptions<ContactDBContext> options) : base(options) 
         {
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<IletisimBilgisi>()
                 .HasOne<Kisi>(s => s.Kisi)
                 .WithMany(g => g.IletisimBilgileri)
