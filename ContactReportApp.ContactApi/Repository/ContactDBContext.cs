@@ -1,4 +1,4 @@
-﻿using ContactReportApp.ContactApi.Models;
+﻿using ContactReportApp.ContactApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
