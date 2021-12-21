@@ -11,5 +11,6 @@ namespace ContactReportApp.ContactApi.Models
         public string Ad { get; set; }
         public string Soyad { get; set; }
         public string Firma { get; set; }
+        public ICollection<IletisimBilgisi> IletisimBilgileri { get; set; }
     }
 }
