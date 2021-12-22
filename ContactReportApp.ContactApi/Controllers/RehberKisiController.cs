@@ -117,13 +117,13 @@ namespace ContactReportApp.ContactApi.Controllers
                 {
                     _context.RemoveRange(iletisimler);
                     _context.SaveChanges();
+                }
 
-                    var kisi = _context.Kisiler.Where(x => x.Id == KisiId).FirstOrDefault();
-                    if (kisi != null)
-                    {
-                        _context.Remove(kisi);
-                        _context.SaveChanges();
-                    }
+                var kisi = _context.Kisiler.Where(x => x.Id == KisiId).FirstOrDefault();
+                if (kisi != null)
+                {
+                    _context.Remove(kisi);
+                    _context.SaveChanges();
                     return Ok("Kişi bilgileri ile kişi iletişim bilgileri başarıyla kaldırılmıştır.");
                 }
                 else return NotFound("Kişi bilgileri bulunamadı.");
@@ -136,22 +136,22 @@ namespace ContactReportApp.ContactApi.Controllers
 
         [Route("KisiIletisimBilgileriOlustur")]
         [HttpPost]
-        public ActionResult<string> KisiIletisimBilgileriOlustur([FromBody] IletisimBilgileriModel model)
+        public ActionResult<string> KisiIletisimBilgileriOlustur([FromBody] List<IletisimBilgileriModel> iletisimBilgileriList)
         {
             try
             {
-                var kisi = _context.Kisiler.Where(x => x.Id == model.KisiId).FirstOrDefault();
+                var kisi = _context.Kisiler.Where(x => x.Id == iletisimBilgileriList.FirstOrDefault().KisiId).FirstOrDefault();
                 if (kisi != null)
                 {
                     kisi.IletisimBilgileri = new List<IletisimBilgisi>();
-                    kisi.IletisimBilgileri.Add(new IletisimBilgisi() { BilgiTipi = model.BilgiTipi, KisiId = model.KisiId, BilgiIcerigi = model.BilgiIcerigi });
-                   
+                    foreach (var item in iletisimBilgileriList)
+                    {
+                        kisi.IletisimBilgileri.Add(new IletisimBilgisi() { BilgiTipi = item.BilgiTipi, KisiId = item.KisiId, BilgiIcerigi = item.BilgiIcerigi });
+                    }
                     _context.SaveChanges();
-
-                    return Ok("Kişi iletişim bilgileri başarıyla Oluşmuştur.");
                 }
-                else return NotFound("Kişi bulunamadı.");
 
+                return Ok("Kişi iletişim bilgileri başarıyla Oluşmuştur.");
             }
             catch (Exception ex)
             {
@@ -161,11 +161,11 @@ namespace ContactReportApp.ContactApi.Controllers
 
         [Route("KisiIletisimBilgileriKaldir")]
         [HttpPost]
-        public ActionResult<string> KisiIletisimBilgileriKaldir(int Id)
+        public ActionResult<string> KisiIletisimBilgileriKaldir(int KisiId)
         {
             try
             {
-                var iletisimler = _context.IletisimBilgileri.Where(x => x.Id == Id).ToList();
+                var iletisimler = _context.IletisimBilgileri.Where(x => x.KisiId == KisiId).ToList();
                 if (iletisimler.Count > 0)
                 {
                     _context.RemoveRange(iletisimler);
@@ -182,35 +182,49 @@ namespace ContactReportApp.ContactApi.Controllers
 
         [Route("KisilerKonumaGoreGetir")]
         [HttpGet]
-        public ActionResult<List<KisiBilgileri>> KisilerKonumaGoreGetir(string Konum)
+        public ActionResult<RaporIstatistikModel> KisilerKonumaGoreGetir(string Konum)
         {
             try
             {
-                var kisiListesi = new List<KisiBilgileri>();
+                var result = new RaporIstatistikModel();
+                result.Detaylar = new List<Detay>();
 
+                int kisiSayisi = 0;
+                int telefonKisiSayisi = 0;
+               
                 var kisiler = _context.Kisiler.ToList();
 
-                if (kisiler != null)
+                foreach (var kisi in kisiler)
                 {
-                    foreach (var kisi in kisiler)
+                    var iletisimListesi = _context.IletisimBilgileri.Where(x => x.KisiId == kisi.Id && x.BilgiTipi == BilgiTipi.Konum && x.BilgiIcerigi.Contains(Konum)).ToList();
+                    if (iletisimListesi.Count > 0)
                     {
-                        var iletisimBilgileri = _context.IletisimBilgileri.Where(x => x.KisiId == kisi.Id && x.BilgiIcerigi.Contains(Konum) && x.BilgiTipi == BilgiTipi.Konum).ToList();
-                        if (iletisimBilgileri.Count > 0)
+                        kisiSayisi++;
+
+                        var iletisimListesi2 = _context.IletisimBilgileri.Where(x => x.KisiId == kisi.Id && x.BilgiTipi == BilgiTipi.TelefonNumarasi && !string.IsNullOrEmpty(x.BilgiIcerigi)).ToList();
+                        if (iletisimListesi2.Count > 0)
                         {
-                            var kisiBilgileri = new KisiBilgileri() { Ad = kisi.Ad, Soyad = kisi.Soyad, Firma = kisi.Firma };
-
-                            kisiBilgileri.Iletisimler = new List<Iletisim>();
-
-                            foreach (var iletisimBilgi in iletisimBilgileri)
-                            {
-                                kisiBilgileri.Iletisimler.Add(new Iletisim() { BilgiTipi = iletisimBilgi.BilgiTipi.ToString(), BilgiIcerigi = iletisimBilgi.BilgiIcerigi });
-                            }
-                            kisiListesi.Add(kisiBilgileri);
+                            telefonKisiSayisi++;
                         }
+                        result.Detaylar.Add(new Detay
+                        {
+                            Ad = kisi.Ad,
+                            Soyad = kisi.Soyad,
+                            KonumBilgisi = string.Join("-", iletisimListesi.Select(x => x.BilgiIcerigi).ToList()),
+                            Telefon = string.Join("-", iletisimListesi2.Select(x => x.BilgiIcerigi).ToList()),
+                        });
+
                     }
                 }
-                return Ok(kisiListesi);
 
+                if (kisiSayisi > 0)
+                {
+                    result.KayitliTelefonNumarasiSayisi = telefonKisiSayisi;
+                    result.KayitliKisiSayisi = kisiSayisi;
+                    return Ok(result);
+                }
+                else
+                    return NotFound("Kişiler bulunamadı.");
             }
             catch (Exception ex)
             {
