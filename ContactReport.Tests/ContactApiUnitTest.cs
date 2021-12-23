@@ -2,10 +2,12 @@ using ContactReportApp.ContactApi.Entities;
 using ContactReportApp.ContactApi.Models;
 using NUnit.Framework;
 using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 
 namespace ContactReport.Tests
 {
@@ -23,6 +25,7 @@ namespace ContactReport.Tests
         public void KisilerGetirTest()
         {
             var request = new RestRequest("RehberKisi/KisilerGetir", Method.GET);
+            request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
             request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
             var result = _restApi.Execute<List<KisiBilgileri>>(request);
             Assert.IsTrue(result != null && result.Data != null && result.Data.Count > 0);
@@ -46,9 +49,10 @@ namespace ContactReport.Tests
         public void IletisimBilgileriGetirTest()
         {
             var request = new RestRequest("RehberKisi/IletisimBilgileriGetir", Method.GET);
-            request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
+            request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
             request.AddParameter("KisiId", 1);
             //request.AddParameter("KisiId", 2);
+            request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
             var result = _restApi.Execute<List<Iletisim>>(request);
             Assert.IsTrue(result != null && result.Data != null && result.Data.Count > 0);
         }
@@ -57,8 +61,9 @@ namespace ContactReport.Tests
         public void KisilerKonumaGoreGetirTest()
         {
             var request = new RestRequest("RehberKisi/KisilerKonumaGoreGetir", Method.GET);
-            request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
+            request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
             request.AddParameter("Konum", "Istanbul");
+            request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
             var result = _restApi.Execute<List<RaporIstatistikModel>>(request);
             Assert.IsTrue(result != null && result.Data != null && result.Data.Count > 0);
         }
@@ -68,6 +73,7 @@ namespace ContactReport.Tests
         {
             var request = new RestRequest("RehberKisi/KisiOlustur", Method.POST);
             request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
             request.OnBeforeDeserialization = x =>
             {
                 x.ContentType = "application/json";
