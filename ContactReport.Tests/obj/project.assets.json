@@ -1361,6 +1361,25 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "ContactReportApp.ReportApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.0",
+          "Npgsql": "5.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0",
+          "Swashbuckle.AspNetCore": "5.6.3"
+        },
+        "compile": {
+          "bin/placeholder/ContactReportApp.ReportApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ContactReportApp.ReportApi.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5006,11 +5025,17 @@
       "type": "project",
       "path": "../ContactReportApp.ContactApi/ContactReportApp.ContactApi.csproj",
       "msbuildProject": "../ContactReportApp.ContactApi/ContactReportApp.ContactApi.csproj"
+    },
+    "ContactReportApp.ReportApi/1.0.0": {
+      "type": "project",
+      "path": "../ContactReportApp.ReportApi/ContactReportApp.ReportApi.csproj",
+      "msbuildProject": "../ContactReportApp.ReportApi/ContactReportApp.ReportApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "ContactReportApp.ContactApi >= 1.0.0",
+      "ContactReportApp.ReportApi >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "NUnit >= 3.13.1",
       "NUnit3TestAdapter >= 3.17.0",
@@ -5057,6 +5082,9 @@
           "projectReferences": {
             "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp.ContactApi\\ContactReportApp.ContactApi.csproj": {
               "projectPath": "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp.ContactApi\\ContactReportApp.ContactApi.csproj"
+            },
+            "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp.ReportApi\\ContactReportApp.ReportApi.csproj": {
+              "projectPath": "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp.ReportApi\\ContactReportApp.ReportApi.csproj"
             }
           }
         }

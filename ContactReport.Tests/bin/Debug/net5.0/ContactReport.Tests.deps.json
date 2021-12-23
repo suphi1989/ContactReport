@@ -9,6 +9,7 @@
       "ContactReport.Tests/1.0.0": {
         "dependencies": {
           "ContactReportApp.ContactApi": "1.0.0",
+          "ContactReportApp.ReportApi": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "NUnit": "3.13.1",
           "NUnit3TestAdapter": "3.17.0",
@@ -900,6 +901,17 @@
         "runtime": {
           "ContactReportApp.ContactApi.dll": {}
         }
+      },
+      "ContactReportApp.ReportApi/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.0",
+          "Npgsql": "5.0.0",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0",
+          "Swashbuckle.AspNetCore": "5.6.3"
+        },
+        "runtime": {
+          "ContactReportApp.ReportApi.dll": {}
+        }
       }
     }
   },
@@ -1477,6 +1489,11 @@
       "hashPath": "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
     },
     "ContactReportApp.ContactApi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ContactReportApp.ReportApi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

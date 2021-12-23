@@ -4,7 +4,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactReportApp.ContactApi
+namespace ContactReportApp.ReportApi
 {
     public class BasicAuthenticationMiddleware
     {

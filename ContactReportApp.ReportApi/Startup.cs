@@ -1,7 +1,9 @@
+using ContactReportApp.ReportApi.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,11 +28,16 @@ namespace ContactReportApp.ReportApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ReportDBContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("ConnectionDatabase"));
+            });
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactReportApp.ReportApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactReportApp.ContactApi", Version = "v1" });
             });
         }
 
@@ -41,14 +48,14 @@ namespace ContactReportApp.ReportApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContactReportApp.ReportApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContactReportApp.ContactApi v1"));
             }
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseMiddleware<BasicAuthenticationMiddleware>();
 
-            app.UseAuthorization();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

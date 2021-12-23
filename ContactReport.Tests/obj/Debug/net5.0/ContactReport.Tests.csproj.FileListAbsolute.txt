@@ -118,3 +118,9 @@ C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\b
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ContactApi.dll
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ContactApi.pdb
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.deps.json
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.runtimeconfig.json
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.runtimeconfig.dev.json
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.exe
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.dll
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReport.Tests\bin\Debug\net5.0\ContactReportApp.ReportApi.pdb
