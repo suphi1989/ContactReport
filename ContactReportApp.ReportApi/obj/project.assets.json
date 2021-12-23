@@ -253,6 +253,15 @@
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
         }
       },
+      "RestSharp/106.15.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/RestSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/5.6.3": {
         "type": "package",
         "dependencies": {
@@ -793,6 +802,22 @@
         "postgresql.png"
       ]
     },
+    "RestSharp/106.15.0": {
+      "sha512": "HM7ohR6AscxedNenrrl93DSZG6hvdnA7O+NHyCl/6ZKTfn8psQ9rRmUpcb9eWr+140vmfxoVemql0bUoeGEW3A==",
+      "type": "package",
+      "path": "restsharp/106.15.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/RestSharp.dll",
+        "lib/net452/RestSharp.xml",
+        "lib/netstandard2.0/RestSharp.dll",
+        "lib/netstandard2.0/RestSharp.xml",
+        "restsharp.106.15.0.nupkg.sha512",
+        "restsharp.nuspec",
+        "restsharp.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/5.6.3": {
       "sha512": "UkL9GU0mfaA+7RwYjEaBFvAzL8qNQhNqAeV5uaWUu/Z+fVgvK9FHkGCpTXBqSQeIHuZaIElzxnLDdIqGzuCnVg==",
       "type": "package",
@@ -1033,6 +1058,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
       "Npgsql >= 5.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.0",
+      "RestSharp >= 106.15.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -1108,6 +1134,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "RestSharp": {
+            "target": "Package",
+            "version": "[106.15.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

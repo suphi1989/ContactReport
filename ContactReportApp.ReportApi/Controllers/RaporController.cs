@@ -3,9 +3,12 @@ using ContactReportApp.ReportApi.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ContactReportApp.ReportApi.Controllers
@@ -39,33 +42,40 @@ namespace ContactReportApp.ReportApi.Controllers
                 return BadRequest(ex.Message.ToString());
             }
         }
-        [Route("RaporlarGetir")]
+        
+        [Route("RaporOlustur")]
         [HttpPost]
-        public ActionResult<int> RaporOlustur()
+        public ActionResult<int> RaporOlustur(string konum)
         {
             try
             {
-                var rapor = new Rapor();
-
                 //Rapor Oluştur
+
+                int result = 0;
+                var rapor = new Rapor();
+                rapor.DosyaYolu = "";
+                rapor.RaporDurumu = RaporDurum.Hazirlaniyor;
+                rapor.RaporTarihi = DateTime.Now;
+                _context.Add(rapor);
+                _context.SaveChanges();
+                result = rapor.Id;
+                
+                //Rapor detayları almak için Contact Apiye istek gönder...Contact api den Kafka queue'ya rapor json olarak gönderecek. 
+
                 Task t1 = Task.Run(() =>
                 {
-                    rapor.DosyaYolu = "";
-                    rapor.RaporDurumu = RaporDurum.Hazirlaniyor;
-                    rapor.RaporTarihi = DateTime.Now;
-
-                    _context.Add(rapor);
-
-                    _context.SaveChanges();
+                   var restApi = new RestClient("https://localhost:44305"); // Contact Api url
+                   var request = new RestRequest("RehberKisi/KisilerKonumaGoreRaporuOlustur", Method.GET);
+                   request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
+                   request.AddParameter("Konum", konum);
+                   request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
+                   var result = restApi.Execute(request);
                 });
 
-                //Rapor detayları almak için Contact Apiye istek gönder...Contact api de Kafka queue'ya rapor json olarak gönderecek. 
-                Task t2 = Task.Run(() =>
-                {
+               /* Thread.Sleep(10000);
+                bool done = t1.IsCompleted;*/
 
-                });
-
-                return Ok(rapor.Id);
+                return Ok("Rapor isteği başarıyla gönderildi. RaporId:" + result);
             }
             catch (Exception ex)
             {

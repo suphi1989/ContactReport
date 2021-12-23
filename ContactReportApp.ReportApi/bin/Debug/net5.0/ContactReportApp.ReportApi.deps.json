@@ -38,6 +38,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
           "Npgsql": "5.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0",
+          "RestSharp": "106.15.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -487,6 +488,17 @@
         },
         "compile": {
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        }
+      },
+      "RestSharp/106.15.0": {
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {
+            "assemblyVersion": "106.15.0.0",
+            "fileVersion": "106.15.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/RestSharp.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/5.6.3": {
@@ -2404,6 +2416,13 @@
       "sha512": "sha512-SGLNTyrC9kuCbrYG2kFZGhOE/sq+EekxgpvRlnJIDQ4kriQrtT2pkrI9Wuox8Wsa2Jvf9bHqbQ9pTKyXpx6BiQ==",
       "path": "npgsql.entityframeworkcore.postgresql/5.0.0",
       "hashPath": "npgsql.entityframeworkcore.postgresql.5.0.0.nupkg.sha512"
+    },
+    "RestSharp/106.15.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HM7ohR6AscxedNenrrl93DSZG6hvdnA7O+NHyCl/6ZKTfn8psQ9rRmUpcb9eWr+140vmfxoVemql0bUoeGEW3A==",
+      "path": "restsharp/106.15.0",
+      "hashPath": "restsharp.106.15.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/5.6.3": {
       "type": "package",

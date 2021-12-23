@@ -54,7 +54,7 @@ namespace ContactReportApp.ContactApi
 
             app.UseHttpsRedirection();
 
-            app.UseMiddleware<BasicAuthenticationMiddleware>();
+            //app.UseMiddleware<BasicAuthenticationMiddleware>();
             
             app.UseRouting();
 

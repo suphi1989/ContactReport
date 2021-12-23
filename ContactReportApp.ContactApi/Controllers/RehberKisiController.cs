@@ -231,5 +231,24 @@ namespace ContactReportApp.ContactApi.Controllers
                 return BadRequest(ex.Message.ToString());
             }
         }
+
+        [Route("KisilerKonumaGoreRaporuOlustur")]
+        [HttpGet]
+        public ActionResult KisilerKonumaGoreRaporuOlustur(string Konum)//bu endpoint report api den çağırıyor raporu kafka ya göndermek için.
+        {
+            try
+            {
+                var result = KisilerKonumaGoreGetir(Konum).Result;
+                var jsonData = JsonConvert.SerializeObject(result);
+
+
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
     }
 }
