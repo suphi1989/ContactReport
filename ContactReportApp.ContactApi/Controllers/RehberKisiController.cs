@@ -234,13 +234,16 @@ namespace ContactReportApp.ContactApi.Controllers
 
         [Route("KisilerKonumaGoreRaporuOlustur")]
         [HttpGet]
-        public ActionResult KisilerKonumaGoreRaporuOlustur(string Konum)//bu endpoint report api den çağırıyor raporu kafka ya göndermek için.
+        //bu endpoint report api den çağırıyor raporu kafka ya göndermek için.
+        public ActionResult KisilerKonumaGoreRaporuOlustur(string Konum)
         {
             try
             {
                 var result = KisilerKonumaGoreGetir(Konum).Result;
+                
                 var jsonData = JsonConvert.SerializeObject(result);
 
+                //json data Kafka servis'ye göndereceğiz
 
 
                 return Ok();
