@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "ContactReportApp.ContactApi/1.0.0": {
         "dependencies": {
+          "Confluent.Kafka": "1.8.2",
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
@@ -225,7 +226,7 @@
           "System.Linq.Expressions": "5.0.0.0",
           "System.Linq.Parallel": "5.0.0.0",
           "System.Linq.Queryable": "5.0.0.0",
-          "System.Memory": "5.0.0.0",
+          "System.Memory.Reference": "5.0.0.0",
           "System.Net": "4.0.0.0",
           "System.Net.Http": "5.0.0.0",
           "System.Net.Http.Json": "5.0.0.0",
@@ -331,11 +332,140 @@
           "ContactReportApp.ContactApi.dll": {}
         }
       },
+      "Confluent.Kafka/1.8.2": {
+        "dependencies": {
+          "System.Memory": "4.5.0",
+          "librdkafka.redist": "1.8.2"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Confluent.Kafka.dll": {
+            "assemblyVersion": "1.8.2.0",
+            "fileVersion": "1.8.2.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/Confluent.Kafka.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
             "assemblyVersion": "2.8.0.0",
             "fileVersion": "2.8.26.1919"
+          }
+        }
+      },
+      "librdkafka.redist/1.8.2": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/librdkafka.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/alpine-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/centos6-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/centos7-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/librdkafka.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libcrypto-1_1-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.1.1.12"
+          },
+          "runtimes/win-x64/native/librdkafka.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/librdkafkacpp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libssl-1_1-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.1.1.12"
+          },
+          "runtimes/win-x64/native/msvcp140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "14.29.30040.0"
+          },
+          "runtimes/win-x64/native/vcruntime140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "14.29.30040.0"
+          },
+          "runtimes/win-x64/native/zlib1.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.2.11.0"
+          },
+          "runtimes/win-x64/native/zstd.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.5.0.0"
+          },
+          "runtimes/win-x86/native/libcrypto-1_1.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.1.1.12"
+          },
+          "runtimes/win-x86/native/librdkafka.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/librdkafkacpp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libssl-1_1.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.1.1.12"
+          },
+          "runtimes/win-x86/native/msvcp140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "14.29.30040.0"
+          },
+          "runtimes/win-x86/native/vcruntime140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "14.29.30040.0"
+          },
+          "runtimes/win-x86/native/zlib1.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.2.11.0"
+          },
+          "runtimes/win-x86/native/zstd.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.5.0.0"
           }
         }
       },
@@ -563,6 +693,7 @@
           "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {}
         }
       },
+      "System.Memory/4.5.0": {},
       "System.Runtime.CompilerServices.Unsafe/4.6.0": {},
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
         "compile": {
@@ -1674,7 +1805,7 @@
         },
         "compileOnly": true
       },
-      "System.Memory/5.0.0.0": {
+      "System.Memory.Reference/5.0.0.0": {
         "compile": {
           "System.Memory.dll": {}
         },
@@ -2270,12 +2401,26 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Confluent.Kafka/1.8.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gUx1YnwMl19Sg/xOF5h9EQQkx31fcxdDW7LLPTEXbKQuXjvyvZONQsVbFFVCqetCB0tGEq/JKCmkdisIsOdV3g==",
+      "path": "confluent.kafka/1.8.2",
+      "hashPath": "confluent.kafka.1.8.2.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
+    "librdkafka.redist/1.8.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8NipuyiD21aJO9kKv9FHzBbcHpWkquq+n/MpwLIm0Aac/+quRVyYIEYAa7hfcFfCdnjiBeMZxGblnBIzw5X6RQ==",
+      "path": "librdkafka.redist/1.8.2",
+      "hashPath": "librdkafka.redist.1.8.2.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -2472,6 +2617,13 @@
       "sha512": "sha512-tCQTzPsGZh/A9LhhA6zrqCRV4hOHsK90/G7q3Khxmn6tnB1PuNU0cRaKANP2AWcF9bn0zsuOoZOSrHuJk6oNBA==",
       "path": "system.diagnostics.diagnosticsource/5.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m0psCSpUxTGfvwyO0i03ajXVhgBqyXlibXz0Mo1dtKGjaHrXFLnuQ8rNBTmWRqbfRjr4eC6Wah4X5FfuFDu5og==",
+      "path": "system.memory/4.5.0",
+      "hashPath": "system.memory.4.5.0.nupkg.sha512"
     },
     "System.Runtime.CompilerServices.Unsafe/4.6.0": {
       "type": "package",
@@ -3405,7 +3557,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Memory/5.0.0.0": {
+    "System.Memory.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

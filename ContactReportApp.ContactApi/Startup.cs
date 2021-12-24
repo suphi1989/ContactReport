@@ -1,3 +1,4 @@
+using Confluent.Kafka;
 using ContactReportApp.ContactApi.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,11 @@ namespace ContactReportApp.ContactApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var producerConfig = new ProducerConfig();
+            Configuration.Bind("producer", producerConfig);
+
+            services.AddSingleton<ProducerConfig>(producerConfig);
+
             services.AddDbContext<ContactDBContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("ConnectionDatabase"));
@@ -54,7 +60,7 @@ namespace ContactReportApp.ContactApi
 
             app.UseHttpsRedirection();
 
-            //app.UseMiddleware<BasicAuthenticationMiddleware>();
+            app.UseMiddleware<BasicAuthenticationMiddleware>();
             
             app.UseRouting();
 

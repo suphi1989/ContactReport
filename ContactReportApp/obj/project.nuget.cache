@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rrOmdpiUi/DrNSezh/qJzN6AL1+7SbKJQNrh2mJbfepFxENPuRdq9AsArt+VrytesdCfRCNOkMgtmM+CZYDzmQ==",
+  "dgSpecHash": "U2ApJv/2hPhCARTEYB7dUffFH+FCtNvdrnwAU/lKHUGDGmvprxQJUyciHkQDkaJhVq0Koq1GRMJbkRypkW+FMA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReportApp\\ContactReportApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\confluent.kafka\\1.8.2\\confluent.kafka.1.8.2.nupkg.sha512",
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\librdkafka.redist\\1.8.2\\librdkafka.redist.1.8.2.nupkg.sha512",
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

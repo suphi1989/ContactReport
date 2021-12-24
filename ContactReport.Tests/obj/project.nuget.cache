@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "iefoqldHU8Wmmal4f5NuAM6vvvA+G/feSIJn4VAKxFWpMzOFk6aoHsQ1KUTnwb3rlSl8Y0Wb9kYmrbUCFuHu5w==",
+  "dgSpecHash": "oHbSWfwgABfuzF4rNf+xjISYd7yAUdbqrCmifRoIB1xhMRPlE9XEKTpuIOtwtqqYsabCh/ZgIgXR9WdLWQaOFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Suphi Bayrak\\source\\repos\\suphi1989\\ContactReport\\ContactReport.Tests\\ContactReport.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\confluent.kafka\\1.8.2\\confluent.kafka.1.8.2.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\librdkafka.redist\\1.8.2\\librdkafka.redist.1.8.2.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.dotnet.internalabstractions\\1.0.0\\microsoft.dotnet.internalabstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
@@ -61,6 +63,7 @@
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\Suphi Bayrak\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using ContactReportApp.Models;
+﻿using Confluent.Kafka;
+using ContactReportApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,27 @@ namespace ContactReportApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ConsumerConfig _config;
+        static volatile public bool isStartConsume;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ConsumerConfig config)
         {
             _logger = logger;
+            _config = config;
+
+            if (!isStartConsume)
+            {
+                var kafkaConsumer = new KafkaConsumer(_config);
+                kafkaConsumer.StartConsumerAsync();
+            }
+            isStartConsume = true;
         }
 
         public IActionResult Index()
         {
+
+           
+
             return View();
         }
 

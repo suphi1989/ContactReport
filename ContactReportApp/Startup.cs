@@ -1,3 +1,4 @@
+using Confluent.Kafka;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +24,11 @@ namespace ContactReportApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var consumerConfig = new ConsumerConfig();
+            Configuration.Bind("consumer", consumerConfig);
+
+            services.AddSingleton<ConsumerConfig>(consumerConfig);
+
             services.AddControllersWithViews();
         }
 

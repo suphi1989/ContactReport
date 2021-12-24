@@ -72,8 +72,9 @@ namespace ContactReportApp.ReportApi.Controllers
                     var response = restApi.Execute(request);
                 });
 
-               /* Thread.Sleep(10000);
-                bool done = t1.IsCompleted;*/
+            
+                /* Thread.Sleep(5000);
+                 bool done = t1.IsCompleted;*/
 
                 return Ok("Rapor isteği başarıyla gönderildi. RaporId:" + result);
             }

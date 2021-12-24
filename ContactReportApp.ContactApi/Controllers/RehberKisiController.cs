@@ -1,4 +1,5 @@
-﻿using ContactReportApp.ContactApi.Entities;
+﻿using Confluent.Kafka;
+using ContactReportApp.ContactApi.Entities;
 using ContactReportApp.ContactApi.Models;
 using ContactReportApp.ContactApi.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -20,10 +21,12 @@ namespace ContactReportApp.ContactApi.Controllers
     {
         private readonly ILogger<RehberKisiController> _logger;
         private readonly ContactDBContext _context;
-        public RehberKisiController(ILogger<RehberKisiController> logger, ContactDBContext context)
+        private ProducerConfig _config;
+        public RehberKisiController(ILogger<RehberKisiController> logger, ContactDBContext context, ProducerConfig config)
         {
             _logger = logger;
             _context = context;
+            _config = config;
         }
         
         [Route("KisilerGetir")]
@@ -235,7 +238,7 @@ namespace ContactReportApp.ContactApi.Controllers
         [Route("KisilerKonumaGoreRaporuOlustur")]
         [HttpGet]
         //bu endpoint report api den çağırıyor raporu kafka ya göndermek için.
-        public ActionResult KisilerKonumaGoreRaporuOlustur(string Konum)
+        public async Task<ActionResult> KisilerKonumaGoreRaporuOlustur(string Konum)
         {
             try
             {
@@ -245,8 +248,12 @@ namespace ContactReportApp.ContactApi.Controllers
 
                 //json data Kafka servis'ye göndereceğiz
 
-
-                return Ok();
+                using (var producer = new ProducerBuilder<Null, string>(_config).Build())
+                {
+                    await producer.ProduceAsync("report-topic", new Message<Null, string> { Value = jsonData });
+                    producer.Flush(TimeSpan.FromSeconds(10));
+                    return Ok(true);
+                }
             }
             catch (Exception ex)
             {
