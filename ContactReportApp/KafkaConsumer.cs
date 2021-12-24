@@ -23,8 +23,15 @@ namespace ContactReportApp
                     while (true)
                     {
                         var cr = consumer.Consume();
-                        string jsonData = cr.Message.Value;
-                        //if(string.IsNullOrEmpty(jsonData))
+                        string data = cr.Message.Value;
+                        if (!string.IsNullOrEmpty(data))
+                        {
+                            string raporId = data.Split("***")[0];
+                            string jsonData = data.Split("***")[1];
+
+                            string a = "";
+
+                        }
                     }
                 }
             });

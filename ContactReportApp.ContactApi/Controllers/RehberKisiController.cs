@@ -238,19 +238,19 @@ namespace ContactReportApp.ContactApi.Controllers
         [Route("KisilerKonumaGoreRaporuOlustur")]
         [HttpGet]
         //bu endpoint report api den çağırıyor raporu kafka ya göndermek için.
-        public async Task<ActionResult> KisilerKonumaGoreRaporuOlustur(string Konum)
+        public async Task<ActionResult> KisilerKonumaGoreRaporuOlustur(string Konum,string RaporId)
         {
             try
             {
                 var result = KisilerKonumaGoreGetir(Konum).Result;
                 
                 var jsonData = JsonConvert.SerializeObject(result);
-
+                
                 //json data Kafka servis'ye göndereceğiz
 
                 using (var producer = new ProducerBuilder<Null, string>(_config).Build())
                 {
-                    await producer.ProduceAsync("report-topic", new Message<Null, string> { Value = jsonData });
+                    await producer.ProduceAsync("report-topic", new Message<Null, string> { Value = RaporId + "***" + jsonData });
                     producer.Flush(TimeSpan.FromSeconds(10));
                     return Ok(true);
                 }

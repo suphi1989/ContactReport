@@ -68,6 +68,7 @@ namespace ContactReportApp.ReportApi.Controllers
                     var request = new RestRequest("RehberKisi/KisilerKonumaGoreRaporuOlustur", Method.GET);
                     request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
                     request.AddParameter("Konum", Konum);
+                    request.AddParameter("RaporId", rapor.Id);
                     request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
                     var response = restApi.Execute(request);
                 });
