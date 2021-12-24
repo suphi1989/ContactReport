@@ -243,9 +243,18 @@ namespace ContactReportApp.ContactApi.Controllers
             try
             {
                 var result = KisilerKonumaGoreGetir(Konum).Result;
-                
+
+                //Kişiler bulunamadı
+
+                //{ "Value":"Kişiler bulunamadı.","Formatters":[],"ContentTypes":[],"DeclaredType":null,"StatusCode":404}
+
+                //Başarılı
+
+                /*  35***{"Value":{"Detaylar":[{"Ad":"Suphi","Soyad":"Bayrak","KonumBilgisi":"Bursa","Telefon":"05346985877"},{"Ad":"Mehmet","Soyad":"Yılmaz","KonumBilgisi":"Bursa","Telefon":"05356828282"}],"KayitliKisiSayisi":2,"KayitliTelefonNumarasiSayisi":2},"Formatters":[],"ContentTypes":[],"DeclaredType":null,"StatusCode":200} */
+
                 var jsonData = JsonConvert.SerializeObject(result);
-                
+
+                _logger.LogInformation("Sender:" + RaporId + "***" + jsonData);
                 //json data Kafka servis'ye göndereceğiz
 
                 using (var producer = new ProducerBuilder<Null, string>(_config).Build())

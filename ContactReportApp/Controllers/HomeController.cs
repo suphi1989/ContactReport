@@ -23,7 +23,7 @@ namespace ContactReportApp.Controllers
 
             if (!isStartConsume)
             {
-                var kafkaConsumer = new KafkaConsumer(_config);
+                var kafkaConsumer = new KafkaConsumer(_config, _logger);
                 kafkaConsumer.StartConsumerAsync();
             }
             isStartConsume = true;

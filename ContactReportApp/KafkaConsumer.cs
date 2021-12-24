@@ -1,4 +1,6 @@
 ﻿using Confluent.Kafka;
+using ContactReportApp.Controllers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,33 +10,51 @@ namespace ContactReportApp
 {
     public class KafkaConsumer
     {
+        private readonly ILogger<HomeController> _logger;
         private ConsumerConfig _config;
-        public KafkaConsumer(ConsumerConfig config)
+        public KafkaConsumer(ConsumerConfig config, ILogger<HomeController> logger)
         {
             _config = config;
+            _logger = logger;
         }
 
         public void StartConsumerAsync()
         {
-            Task.Run(() => {
-                using (var consumer = new ConsumerBuilder<Null, string>(_config).Build())
-                {
-                    consumer.Subscribe("report-topic");
-                    while (true)
+            try
+            {
+                Task.Run(() => {
+                    using (var consumer = new ConsumerBuilder<Null, string>(_config).Build())
                     {
-                        var cr = consumer.Consume();
-                        string data = cr.Message.Value;
-                        if (!string.IsNullOrEmpty(data))
+                        consumer.Subscribe("report-topic");
+                        while (true)
                         {
-                            string raporId = data.Split("***")[0];
-                            string jsonData = data.Split("***")[1];
+                            var cr = consumer.Consume();
+                            string data = cr.Message.Value;
+                            
+                            _logger.LogInformation("Receiver:" + data);
 
-                            string a = "";
+                            if (!string.IsNullOrEmpty(data))
+                            {
+                                string raporId = data.Split("***")[0];
+                                string jsonData = data.Split("***")[1];
 
+                                if (jsonData.Contains("Kişiler bulunamadı.") || jsonData.Contains("404"))//Kişiler bulunamadı
+                                {
+
+                                }
+                                else //Başarılı
+                                {
+
+                                }
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+            }
         }
 
     }
