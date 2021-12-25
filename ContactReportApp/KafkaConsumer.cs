@@ -4,6 +4,7 @@ using ContactReportApp.Controllers;
 using ContactReportApp.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +47,7 @@ namespace ContactReportApp
 
                                 if (jsonData.Contains("Kişiler bulunamadı.") || jsonData.Contains("404"))//Kişiler bulunamadı
                                 {
-                                    //RaporStatuGuncelle("Kişiler bulunamadı.", raporId);
+                                    RaporStatuGuncelle("Bu konum da kişiler yoktur.", raporId);
                                 }
                                 else //Başarılı
                                 {
@@ -137,7 +138,34 @@ namespace ContactReportApp
             }
             workbook.Save(dosyaYolu, SaveFormat.Xlsx);
 
-            //RaporStatuGuncelle(dosyaYolu, raporId);
+            RaporStatuGuncelle(dosyaYolu, raporId);
+        }
+        private void RaporStatuGuncelle(string dosyaYolu, string raporId)
+        {
+
+            string apiUrl = "https://localhost:44333";
+            RestClient _restApi = new RestClient(apiUrl);
+            var request = new RestRequest("Rapor/RaporStatuGuncelle", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Authorization", string.Format("Basic {0}", Convert.ToBase64String(Encoding.GetEncoding("UTF-8").GetBytes("admin" + ":" + "123"))));
+            request.OnBeforeDeserialization = x =>
+            {
+                x.ContentType = "application/json";
+            };
+            var raporStatu = new RaporStatuModel()
+            {
+                DosyaYolu = dosyaYolu,
+                RaporId = raporId,
+                RaporDurumu = RaporDurum.Tamamlandi
+            };
+            request.AddBody(raporStatu);
+
+            var result = _restApi.Execute<bool>(request);
+            
+            if (result.StatusCode == System.Net.HttpStatusCode.OK && result.Data == true)
+            {
+                _logger.LogInformation("Rapor Statusu Güncellendi. RaporId=" + raporId);
+            }
         }
 
     }

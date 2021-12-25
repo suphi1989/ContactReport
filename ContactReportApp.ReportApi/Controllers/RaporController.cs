@@ -1,4 +1,5 @@
 ﻿using ContactReportApp.ReportApi.Entities;
+using ContactReportApp.ReportApi.Models;
 using ContactReportApp.ReportApi.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -83,6 +84,34 @@ namespace ContactReportApp.ReportApi.Controllers
             {
                 return BadRequest(ex.Message.ToString());
             }
+        }
+
+        [Route("RaporStatuGuncelle")]
+        [HttpPost]
+        public ActionResult<bool> RaporStatuGuncelle([FromBody] RaporStatuModel raporStatuModel)
+        {
+            try
+            {
+
+                var rapor = _context.Raporlar.FirstOrDefault(x => x.Id == int.Parse(raporStatuModel.RaporId));
+
+                if (rapor != null)
+                {
+                    rapor.DosyaYolu = raporStatuModel.DosyaYolu;
+                    rapor.RaporDurumu = raporStatuModel.RaporDurumu;
+                    _context.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+
         }
     }
 }
