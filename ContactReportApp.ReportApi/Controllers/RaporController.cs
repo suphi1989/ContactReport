@@ -47,7 +47,7 @@ namespace ContactReportApp.ReportApi.Controllers
         
         [Route("RaporOlustur")]
         [HttpPost]
-        public ActionResult<int> RaporOlustur(string Konum)
+        public ActionResult<int> RaporOlustur([FromBody]string Konum)
         {
             try
             {

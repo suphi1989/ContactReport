@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using ContactReportApp.Api;
 using ContactReportApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,9 @@ namespace ContactReportApp.Controllers
         private readonly ILogger<HomeController> _logger;
         
         private ConsumerConfig _config;
+        private ContactClientApi _contactClientApi;
+        private ReportClientApi _reportClientApi;
+
 
         static volatile public bool isStartConsume;
 
@@ -22,6 +26,8 @@ namespace ContactReportApp.Controllers
         {
             _logger = logger;
             _config = config;
+            _contactClientApi = new ContactClientApi();
+            _reportClientApi = new ReportClientApi();
 
             if (!isStartConsume)
             {
@@ -33,10 +39,25 @@ namespace ContactReportApp.Controllers
 
         public IActionResult Index()
         {
-
-           
-
             return View();
+        }
+
+        public IActionResult ReportList()
+        {
+            return View("ReportView");
+        }
+        public IActionResult ContactList()
+        {
+            return View("ContactView");
+        }
+        public IActionResult RaporuOlustur(ReportViewModel model)
+        {
+            if (!string.IsNullOrEmpty(model.Arama))
+            {
+                string result = _reportClientApi.ReportCreate(model.Arama);
+                TempData["ReportCreated"] = result;
+            }
+            return View("ReportView");
         }
 
         public IActionResult Privacy()

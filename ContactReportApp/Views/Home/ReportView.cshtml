@@ -1,0 +1,22 @@
+﻿@model ReportViewModel
+
+@{
+    ViewData["Title"] = "Rapor Listesi";
+}
+
+
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <br />
+    @using (Html.BeginForm("RaporuOlustur", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.TextBoxFor(m => m.Arama, new { @class = "form-control", placeholder = "Konum giriniz..." })
+        <br />
+        <input type="submit" value="Raporu Oluştur" class="btn btn-primary btn-large" />
+        <br />
+        <p>@TempData["ReportCreated"]</p>
+    }
+
+
+</div>
