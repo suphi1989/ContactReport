@@ -25,6 +25,7 @@ namespace ContactReportApp
         public void ConfigureServices(IServiceCollection services)
         {
             var consumerConfig = new ConsumerConfig();
+
             Configuration.Bind("consumer", consumerConfig);
 
             services.AddSingleton<ConsumerConfig>(consumerConfig);

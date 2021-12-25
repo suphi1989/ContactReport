@@ -31,6 +31,7 @@ namespace ContactReportApp.ContactApi
         public void ConfigureServices(IServiceCollection services)
         {
             var producerConfig = new ProducerConfig();
+
             Configuration.Bind("producer", producerConfig);
 
             services.AddSingleton<ProducerConfig>(producerConfig);
