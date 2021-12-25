@@ -37,7 +37,7 @@ namespace ContactReportApp.ReportApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactReportApp.ContactApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContactReportApp.ReportApi", Version = "v1" });
             });
         }
 
@@ -48,7 +48,7 @@ namespace ContactReportApp.ReportApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContactReportApp.ContactApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContactReportApp.ReportApi v1"));
             }
 
             app.UseHttpsRedirection();
