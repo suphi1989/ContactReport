@@ -114,5 +114,31 @@ namespace ContactReportApp.ReportApi.Controllers
             }
 
         }
+
+        [Route("RaporKaldir")]
+        [HttpPost]
+        public ActionResult<bool> RaporKaldir([FromBody] int RaporId)
+        {
+            try
+            {
+                var rapor = _context.Raporlar.FirstOrDefault(x => x.Id == RaporId);
+
+                if (rapor != null)
+                {
+                    _context.Remove(rapor);
+                    _context.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+
+        }
     }
 }

@@ -13,10 +13,47 @@
     {
         @Html.TextBoxFor(m => m.Arama, new { @class = "form-control", placeholder = "Konum giriniz..." })
         <br />
-        <input type="submit" value="Raporu Oluştur" class="btn btn-primary btn-large" />
+        <input type="submit" value="Raporu Oluştur" class="btn btn-success btn-large" />
         <br />
         <p>@TempData["ReportCreated"]</p>
     }
+</div>
 
+<div>
+    <p class="float-right">@Html.ActionLink("Yenile", "ReportList", "Home", null, new { @class = "btn btn-success btn-large" })</p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Rapor Tarihi</th>
+                <th scope="col">Dosya Yolu</th>
+                <th scope="col">Rapor Durumu</th>
+                <th scope="col"></th>
 
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model !=null && Model.raporListesi != null && Model.raporListesi.Count > 0)
+                {
+                    foreach (var rapor in Model.raporListesi)
+                    {
+                        <tr>
+                            <th scope="row">@rapor.Id</th>
+                            <td>@rapor.RaporTarihi</td>
+                            <td>@rapor.DosyaYolu</td>
+                            <td>@(rapor.RaporDurumu==RaporDurum.Tamamlandi? "Tamamlandı" : "Hazırlanıyor")</td>
+                            <td>
+                                <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id }) '>
+                                    <img src='@Url.Content("~/images/delete.png")' />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+    
 </div>

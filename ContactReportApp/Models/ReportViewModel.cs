@@ -7,6 +7,7 @@ namespace ContactReportApp.Models
 {
     public class ReportViewModel
     {
+        public List<RaporModel> raporListesi { get; set; }
         public string Arama { get; set; }
     }
 }

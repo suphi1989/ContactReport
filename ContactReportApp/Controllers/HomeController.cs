@@ -44,7 +44,8 @@ namespace ContactReportApp.Controllers
 
         public IActionResult ReportList()
         {
-            return View("ReportView");
+            var raporlar = _reportClientApi.GetReportList();
+            return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
         }
         public IActionResult ContactList()
         {
@@ -57,7 +58,16 @@ namespace ContactReportApp.Controllers
                 string result = _reportClientApi.ReportCreate(model.Arama);
                 TempData["ReportCreated"] = result;
             }
-            return View("ReportView");
+            var raporlar = _reportClientApi.GetReportList();
+            return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
+        }
+        public IActionResult RaporuKaldir(int RaporId)
+        {
+            _reportClientApi.ReportDelete(RaporId);
+
+            var raporlar = _reportClientApi.GetReportList();
+
+            return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
         }
 
         public IActionResult Privacy()

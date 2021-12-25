@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using ContactReportApp.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,18 @@ namespace ContactReportApp.Api
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
                 return result.Content+ ". Raporu Oluşturuluyor, lütfen Bekleyiniz.";
             else return "Raporu oluştururken bir hata oluştu";
+        }
+        public List<RaporModel> GetReportList()
+        {
+            var request = GetRequest(Method.GET, "Rapor/RaporlarGetir");
+            var result = _restApi.Execute<List<RaporModel>>(request);
+            return result.Data;
+        }
+        public void ReportDelete(int raporId)
+        {
+            var request = GetRequest(Method.POST, "Rapor/RaporKaldir");
+            request.AddBody(raporId);
+            _restApi.Execute(request);
         }
     }
 }

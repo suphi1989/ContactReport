@@ -57,3 +57,4 @@ C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.Cont
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ref\ContactReportApp.ContactApi.dll
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.pdb
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.genruntimeconfig.cache
+C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.csproj.AssemblyReference.cache
