@@ -25,6 +25,7 @@ namespace ContactReportApp.ReportApi.Controllers
             _logger = logger;
             _context = context;
         }
+
         [Route("RaporlarGetir")]
         [HttpGet]
         public ActionResult<List<Rapor>> RaporlarGetir()

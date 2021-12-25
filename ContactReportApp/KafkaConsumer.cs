@@ -17,7 +17,9 @@ namespace ContactReportApp
     public class KafkaConsumer
     {
         private readonly ILogger<HomeController> _logger;
+
         private ConsumerConfig _config;
+        
         public KafkaConsumer(ConsumerConfig config, ILogger<HomeController> logger)
         {
             _config = config;
@@ -118,6 +120,7 @@ namespace ContactReportApp
                 _logger.LogError(ex, ex.Message);
             }
         }
+
         private void ExcelDosyaOlustur(string klasorAdi, string dosyaAdi, Workbook workbook,string raporId)
         {
             //Proje içinde
@@ -140,6 +143,7 @@ namespace ContactReportApp
 
             RaporStatuGuncelle(dosyaYolu, raporId);
         }
+
         private void RaporStatuGuncelle(string dosyaYolu, string raporId)
         {
 

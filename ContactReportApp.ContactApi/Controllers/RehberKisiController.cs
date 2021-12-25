@@ -22,6 +22,7 @@ namespace ContactReportApp.ContactApi.Controllers
         private readonly ILogger<RehberKisiController> _logger;
         private readonly ContactDBContext _context;
         private ProducerConfig _config;
+
         public RehberKisiController(ILogger<RehberKisiController> logger, ContactDBContext context, ProducerConfig config)
         {
             _logger = logger;

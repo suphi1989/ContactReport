@@ -13,7 +13,9 @@ namespace ContactReportApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
         private ConsumerConfig _config;
+
         static volatile public bool isStartConsume;
 
         public HomeController(ILogger<HomeController> logger, ConsumerConfig config)
