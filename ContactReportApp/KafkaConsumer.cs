@@ -172,6 +172,5 @@ namespace ContactReportApp
                 _logger.LogInformation("Rapor Statusu Güncellendi. RaporId=" + raporId);
             }
         }
-
     }
 }
