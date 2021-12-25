@@ -28,97 +28,98 @@ namespace ContactReportApp
 
         public void StartConsumerAsync()
         {
-            try
-            {
+           
                 Task.Run(() => {
                     using (var consumer = new ConsumerBuilder<Null, string>(_config).Build())
                     {
                         consumer.Subscribe("report-topic");
                         while (true)
                         {
-                            var cr = consumer.Consume();
-                            string data = cr.Message.Value;
-                            
-                            _logger.LogInformation("Receiver:" + data);
-
-                            if (!string.IsNullOrEmpty(data))
+                            try
                             {
-                                string raporId = data.Split("***")[0];
-                                string jsonData = data.Split("***")[1];
-                                
+                                var cr = consumer.Consume();
+                                string data = cr.Message.Value;
 
-                                if (jsonData.Contains("Kişiler bulunamadı.") || jsonData.Contains("404"))//Kişiler bulunamadı
+                                _logger.LogInformation("Receiver:" + data);
+                                if (!string.IsNullOrEmpty(data))
                                 {
-                                    RaporStatuGuncelle("Bu konum da kişiler yoktur.", raporId);
-                                }
-                                else //Başarılı
-                                {
+                                    string raporId = data.Split("***")[0];
+                                    string jsonData = data.Split("***")[1];
 
-                                    var result = JsonConvert.DeserializeObject<ExcelRaporModel>(jsonData);
-                                    if (result != null && result.Value != null && result.Value.Detaylar != null && result.Value.Detaylar.Count > 0)
+
+                                    if (jsonData.Contains("Kişiler bulunamadı.") || jsonData.Contains("404"))//Kişiler bulunamadı
                                     {
-                                        string klasor = "ExcelFiles";
+                                        RaporStatuGuncelle("Bu konum da kişiler yoktur.", raporId);
+                                    }
+                                    else //Başarılı
+                                    {
 
-                                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-                                        var workbook = new Workbook();
-                                        workbook.Settings.Encoding = Encoding.UTF8;
-                                        Worksheet worksheet = workbook.Worksheets[0];
-                                        int cellNo = 0;
-                                        worksheet.Name = "İstatistik Raporu";
-                                        worksheet.Cells[0, cellNo++].PutValue("Ad");
-                                        worksheet.Cells[0, cellNo++].PutValue("Soyad");
-                                        worksheet.Cells[0, cellNo++].PutValue("KonumBilgisi");
-                                        worksheet.Cells[0, cellNo++].PutValue("Telefon");
-                                        
-                                        int rowNo = 1;
-                                        foreach (var kisi in result.Value.Detaylar)
+                                        var result = JsonConvert.DeserializeObject<ExcelRaporModel>(jsonData);
+                                        if (result != null && result.Value != null && result.Value.Detaylar != null && result.Value.Detaylar.Count > 0)
                                         {
-                                            try
+                                            string klasor = "ExcelFiles";
+
+                                            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                                            var workbook = new Workbook();
+                                            workbook.Settings.Encoding = Encoding.UTF8;
+                                            Worksheet worksheet = workbook.Worksheets[0];
+                                            int cellNo = 0;
+                                            worksheet.Name = "İstatistik Raporu";
+                                            worksheet.Cells[0, cellNo++].PutValue("Ad");
+                                            worksheet.Cells[0, cellNo++].PutValue("Soyad");
+                                            worksheet.Cells[0, cellNo++].PutValue("KonumBilgisi");
+                                            worksheet.Cells[0, cellNo++].PutValue("Telefon");
+
+                                            int rowNo = 1;
+                                            foreach (var kisi in result.Value.Detaylar)
                                             {
-                                                cellNo = 0;
-                                                worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Ad);
-                                                worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Soyad);
-                                                worksheet.Cells[rowNo, cellNo++].PutValue(kisi.KonumBilgisi);
-                                                worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Telefon);
+                                                try
+                                                {
+                                                    cellNo = 0;
+                                                    worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Ad);
+                                                    worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Soyad);
+                                                    worksheet.Cells[rowNo, cellNo++].PutValue(kisi.KonumBilgisi);
+                                                    worksheet.Cells[rowNo, cellNo++].PutValue(kisi.Telefon);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    _logger.LogError(ex, ex.Message);
+                                                }
+                                                rowNo++;
                                             }
-                                            catch (Exception ex)
-                                            {
-                                                _logger.LogError(ex, ex.Message);
-                                            }
+
+
                                             rowNo++;
+                                            rowNo++;
+                                            rowNo++;
+
+                                            cellNo = 0;
+                                            worksheet.Cells[rowNo, cellNo++].PutValue("Kayıtlı Kişi Sayısı:");
+                                            worksheet.Cells[rowNo, cellNo++].PutValue(result.Value.KayitliKisiSayisi);
+
+                                            rowNo++;
+                                            cellNo = 0;
+                                            worksheet.Cells[rowNo, cellNo++].PutValue("Kayıtlı Telefon Numarası Sayısı:");
+                                            worksheet.Cells[rowNo, cellNo++].PutValue(result.Value.KayitliTelefonNumarasiSayisi);
+
+                                            rowNo++;
+
+
+                                            ExcelDosyaOlustur(klasor, "rapor_" + DateTime.Now.ToString("yyyyMMdd") + "_" + raporId + ".xlsx", workbook, raporId);
                                         }
 
-
-                                        rowNo++;
-                                        rowNo++;
-                                        rowNo++;
-
-                                        cellNo = 0;
-                                        worksheet.Cells[rowNo, cellNo++].PutValue("Kayıtlı Kişi Sayısı:");
-                                        worksheet.Cells[rowNo, cellNo++].PutValue(result.Value.KayitliKisiSayisi);
-                                        
-                                        rowNo++;
-                                        cellNo = 0;
-                                        worksheet.Cells[rowNo, cellNo++].PutValue("Kayıtlı Telefon Numarası Sayısı:");
-                                        worksheet.Cells[rowNo, cellNo++].PutValue(result.Value.KayitliTelefonNumarasiSayisi);
-                                        
-                                        rowNo++;
-
-
-                                        ExcelDosyaOlustur(klasor, "rapor_" + DateTime.Now.ToString("yyyyMMdd") + "_" + raporId + ".xlsx", workbook, raporId);
                                     }
-
                                 }
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError(ex, ex.Message);
                             }
                         }
                     }
                 });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-            }
+            
         }
 
         private void ExcelDosyaOlustur(string klasorAdi, string dosyaAdi, Workbook workbook,string raporId)

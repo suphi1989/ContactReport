@@ -42,7 +42,6 @@ C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.Cont
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\bin\Debug\net5.0\runtimes\win-x86\native\vcruntime140.dll
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\bin\Debug\net5.0\runtimes\win-x86\native\zlib1.dll
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\bin\Debug\net5.0\runtimes\win-x86\native\zstd.dll
-C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.csproj.AssemblyReference.cache
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.AssemblyInfoInputs.cache
 C:\Users\Suphi Bayrak\source\repos\suphi1989\ContactReport\ContactReportApp.ContactApi\obj\Debug\net5.0\ContactReportApp.ContactApi.AssemblyInfo.cs
