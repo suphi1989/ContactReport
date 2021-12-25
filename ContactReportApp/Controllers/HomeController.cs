@@ -122,14 +122,30 @@ namespace ContactReportApp.Controllers
                 return ContactList();
             else
             {
-                TempData["KisiCreated"] = "Kişi kaydı oluştururken bir hata oluştu";
+                TempData["KisiCreated"] = "Kişi kaydı oluştururken bir hata oluştu.";
 
                 return View("CreateContactView");
             }
         }
 
-        
-        
+        public IActionResult KisiIletisimOlusturView(int KisiId)
+        {
+            return View("CreateContactDetayView", new CreateContactDetayViewModel() { KisiId = KisiId });
+        }
+        public IActionResult KisiIletisimOlustur(CreateContactDetayViewModel model)
+        {
+            model.KisiId = int.Parse(TempData["KisiId"].ToString());
+
+            var isOk = _contactClientApi.CreateContactDetay(new List<CreateContactDetayViewModel>() { model });
+            if (isOk)
+                return KisiIletisimBilgileri(model.KisiId);
+            else
+            {
+                TempData["KisiIletisimCreated"] = "Kişi İletişim kaydı oluştururken bir hata oluştu.";
+                return KisiIletisimOlusturView(model.KisiId);
+            };
+        }
+
         public IActionResult Privacy()
         {
             return View();

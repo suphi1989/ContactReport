@@ -1,0 +1,36 @@
+﻿@model CreateContactDetayViewModel
+
+@{
+    ViewData["Title"] = "Kişi İletişim Oluştur";
+    TempData["KisiId"] = Model.KisiId;
+}
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <br />
+    @using (Html.BeginForm("KisiIletisimOlustur", "Home", FormMethod.Post, new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.BilgiTipi, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                <select asp-for="BilgiTipi" asp-items="Html.GetEnumSelectList<BilgiTipi>()" class="form-control">
+                    <option selected="selected" value="">-Seçiniz-</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.BilgiIcerigi, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BilgiIcerigi, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <input type="submit" value="Kişi İletişim Oluştur" class="btn btn-success btn-large" />
+            </div>
+        </div>
+
+        <p>@TempData["KisiIletisimCreated"]</p>
+    }
+</div>

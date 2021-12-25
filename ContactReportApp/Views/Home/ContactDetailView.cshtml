@@ -8,7 +8,7 @@
 <div>
     <h5>@ViewData["Title"]</h5>
     <br />
-    <p class="float-left">@Html.ActionLink("Kişi İletişim Oluştur", "KisiIletisimOlustur", "Home", null, new { @class = "btn btn-primary btn-large" })</p>
+    <p class="float-left">@Html.ActionLink("Kişi İletişim Oluştur", "KisiIletisimOlusturView", "Home", new { KisiId = int.Parse(ViewData["KisiId"].ToString()) }, new { @class = "btn btn-primary btn-large" })</p>
     <br />
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">

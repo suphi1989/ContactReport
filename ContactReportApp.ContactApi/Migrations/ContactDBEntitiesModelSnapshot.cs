@@ -72,7 +72,7 @@ namespace ContactReportApp.ContactApi.Migrations
                         new
                         {
                             Id = 5,
-                            BilgiIcerigi = "Istanbul",
+                            BilgiIcerigi = "İstanbul",
                             BilgiTipi = 3,
                             KisiId = 2
                         });

@@ -65,5 +65,17 @@ namespace ContactReportApp.Api
             }
             else return 0;
         }
+
+        public bool CreateContactDetay(List<CreateContactDetayViewModel> model)
+        {
+            var request = GetRequest(Method.POST, "RehberKisi/KisiIletisimBilgileriOlustur");
+            request.AddBody(model);
+            var response = _restApi.Execute<string>(request);
+            if (response != null && response.StatusCode == System.Net.HttpStatusCode.OK && response.Content == "\"Kişi iletişim bilgileri başarıyla Oluşmuştur.\"")
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }
