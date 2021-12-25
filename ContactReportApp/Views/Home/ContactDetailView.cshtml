@@ -30,7 +30,7 @@
                             <td>@iletisim.BilgiIcerigi</td>
                             @*<td>@ViewData["KisiId"]</td>*@
                             <td>
-                                <a href='@Url.Action("KisiIletisimKaldir", "Home", new { Id = iletisim.Id, KisiId = int.Parse(ViewData["KisiId"].ToString()) })'>
+                                <a href='@Url.Action("KisiIletisimKaldir", "Home", new { Id = iletisim.Id, KisiId = int.Parse(ViewData["KisiId"].ToString()) })' onclick="return confirm('Kaydı silmek istiyorsun, emin misin?')">
                                     <img src='@Url.Content("~/images/delete.png")' />
                                 </a>
                             </td>

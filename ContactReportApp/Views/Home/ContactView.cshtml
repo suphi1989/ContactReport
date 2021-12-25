@@ -36,7 +36,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href='@Url.Action("KisiKaldir", "Home",new { KisiId=kisi.Id })'>
+                                <a href='@Url.Action("KisiKaldir", "Home",new { KisiId=kisi.Id })' onclick="return confirm('Kaydı silmek istiyorsun, emin misin?')">
                                     <img src='@Url.Content("~/images/delete.png")' />
                                 </a>
                             </td>

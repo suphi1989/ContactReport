@@ -41,7 +41,7 @@
                             <td>@rapor.DosyaYolu</td>
                             <td>@(rapor.RaporDurumu==RaporDurum.Tamamlandi? "Tamamlandı" : "Hazırlanıyor")</td>
                             <td>
-                                <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id })'>
+                                <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id })' onclick="return confirm('Kaydı silmek istiyorsun, emin misin?')">
                                     <img src='@Url.Content("~/images/delete.png")' />
                                 </a>
                             </td>
