@@ -106,7 +106,7 @@ namespace ContactReportApp
                                             rowNo++;
 
 
-                                            ExcelDosyaOlustur(klasor, "rapor_" + DateTime.Now.ToString("yyyyMMdd") + "_" + raporId + ".xlsx", workbook, raporId);
+                                            ExcelDosyaOlustur(klasor, "rapor_" + raporId + ".xlsx", workbook, raporId);
                                         }
 
                                     }

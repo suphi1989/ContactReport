@@ -44,7 +44,7 @@ namespace ContactReportApp.ContactApi.Controllers
                 {
                     foreach (var kisi in kisiler)
                     {
-                        var kisiBilgileri = new KisiBilgileri() { Ad = kisi.Ad, Soyad = kisi.Soyad, Firma = kisi.Firma };
+                        var kisiBilgileri = new KisiBilgileri() { Id = kisi.Id, Ad = kisi.Ad, Soyad = kisi.Soyad, Firma = kisi.Firma };
 
 
                         kisiBilgileri.Iletisimler = new List<Iletisim>();

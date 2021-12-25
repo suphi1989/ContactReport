@@ -47,10 +47,7 @@ namespace ContactReportApp.Controllers
             var raporlar = _reportClientApi.GetReportList();
             return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
         }
-        public IActionResult ContactList()
-        {
-            return View("ContactView");
-        }
+        
         public IActionResult RaporuOlustur(ReportViewModel model)
         {
             if (!string.IsNullOrEmpty(model.Arama))
@@ -61,13 +58,35 @@ namespace ContactReportApp.Controllers
             var raporlar = _reportClientApi.GetReportList();
             return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
         }
+        
         public IActionResult RaporuKaldir(int RaporId)
         {
+            string dosyaYolu1 = string.Format(@"excelfiles\rapor_{0}.xlsx", RaporId); 
+            string dosyaYolu2 = string.Format(@"d:\logs\excelfiles\rapor_{0}.xlsx", RaporId);
+
+            if(System.IO.File.Exists(dosyaYolu1))
+                System.IO.File.Delete(dosyaYolu1);
+
+            if (System.IO.File.Exists(dosyaYolu2))
+                System.IO.File.Delete(dosyaYolu2);
+
             _reportClientApi.ReportDelete(RaporId);
 
             var raporlar = _reportClientApi.GetReportList();
 
             return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
+        }
+
+
+        public IActionResult ContactList()
+        {
+            var kisiler = _contactClientApi.GetContactList();
+
+            return View("ContactView", new ContactViewModel() { Kisiler = kisiler });
+        }
+        public IActionResult CreateContact()
+        {
+            return Ok();
         }
 
         public IActionResult Privacy()

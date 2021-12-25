@@ -4,8 +4,6 @@
     ViewData["Title"] = "Rapor Listesi";
 }
 
-
-
 <div>
     <h5>@ViewData["Title"]</h5>
     <br />
@@ -21,7 +19,7 @@
 
 <div>
     <p class="float-right">@Html.ActionLink("Yenile", "ReportList", "Home", null, new { @class = "btn btn-success btn-large" })</p>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
@@ -29,7 +27,6 @@
                 <th scope="col">Dosya Yolu</th>
                 <th scope="col">Rapor Durumu</th>
                 <th scope="col"></th>
-
             </tr>
         </thead>
         <tbody>
@@ -44,7 +41,7 @@
                             <td>@rapor.DosyaYolu</td>
                             <td>@(rapor.RaporDurumu==RaporDurum.Tamamlandi? "Tamamlandı" : "Hazırlanıyor")</td>
                             <td>
-                                <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id }) '>
+                                <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id })'>
                                     <img src='@Url.Content("~/images/delete.png")' />
                                 </a>
                             </td>
@@ -54,6 +51,4 @@
             }
         </tbody>
     </table>
-
-    
 </div>
