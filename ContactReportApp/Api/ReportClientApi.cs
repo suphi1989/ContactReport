@@ -24,7 +24,7 @@ namespace ContactReportApp.Api
             request.OnBeforeDeserialization = x => { x.ContentType = "application/json"; };
             return request;
         }
-        public string ReportCreate(string Konum)
+        public string CreateReport(string Konum)
         {
             var request = GetRequest(Method.POST, "Rapor/RaporOlustur");
             request.AddBody(Konum);
@@ -39,7 +39,7 @@ namespace ContactReportApp.Api
             var result = _restApi.Execute<List<RaporModel>>(request);
             return result.Data;
         }
-        public void ReportDelete(int raporId)
+        public void DeleteReport(int raporId)
         {
             var request = GetRequest(Method.POST, "Rapor/RaporKaldir");
             request.AddBody(raporId);

@@ -1,12 +1,11 @@
-﻿using ContactReportApp.ContactApi.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ContactReportApp.ContactApi.Models
+namespace ContactReportApp.Models
 {
-    public class Iletisim
+    public class KisiIletisimBilgileriModel
     {
         public int Id { get; set; }
         public string BilgiTipi { get; set; }

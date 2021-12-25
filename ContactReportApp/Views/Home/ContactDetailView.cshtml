@@ -1,0 +1,47 @@
+﻿@model ContactViewModel
+
+@{
+    ViewData["Title"] = "Kişi İletişim Listesi";
+}
+
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <br />
+    <p class="float-left">@Html.ActionLink("Kişi İletişim Oluştur", "KisiIletisimOlustur", "Home", null, new { @class = "btn btn-primary btn-large" })</p>
+    <br />
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">BilgiTipi</th>
+                <th scope="col">BilgiIcerigi</th>
+                @*<th scope="col">#</th>*@
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null && Model.IletisimBilgileri != null && Model.IletisimBilgileri.Count > 0)
+                {
+                    foreach (var iletisim in Model.IletisimBilgileri)
+                    {
+                        <tr>
+                            <td>@iletisim.BilgiTipi</td>
+                            <td>@iletisim.BilgiIcerigi</td>
+                            @*<td>@ViewData["KisiId"]</td>*@
+                            <td>
+                                <a href='@Url.Action("KisiIletisimKaldir", "Home", new { Id = iletisim.Id, KisiId = int.Parse(ViewData["KisiId"].ToString()) })'>
+                                    <img src='@Url.Content("~/images/delete.png")' />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+    <br />
+    <center>@Html.ActionLink("Listeye geri dön", "ContactList", "Home", null, new { @class = "btn btn-primary btn-large" })</center>
+
+</div>

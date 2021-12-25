@@ -5,13 +5,10 @@
 }
 
 
-
-
-
 <div>
     <h5>@ViewData["Title"]</h5>
     <br />
-    <p class="float-left">@Html.ActionLink("Kişi Oluştur", "CreateContact", "Home", null, new { @class = "btn btn-primary btn-large" })</p>
+    <p class="float-left">@Html.ActionLink("Kişi Oluştur", "KisiOlustur", "Home", null, new { @class = "btn btn-primary btn-large" })</p>
     <br />
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
@@ -19,6 +16,7 @@
                 <th scope="col">Adı</th>
                 <th scope="col">Soyadı</th>
                 <th scope="col">Firma</th>
+                <th scope="col">İletisim Detayları</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -32,6 +30,11 @@
                             <td>@kisi.Ad</td>
                             <td>@kisi.Soyad</td>
                             <td>@kisi.Firma</td>
+                            <td>
+                                <a href='@Url.Action("KisiIletisimBilgileri", "Home",new { KisiId=kisi.Id })'>
+                                    <img src='@Url.Content("~/images/detail.png")' />
+                                </a>
+                            </td>
                             <td>
                                 <a href='@Url.Action("KisiKaldir", "Home",new { KisiId=kisi.Id })'>
                                     <img src='@Url.Content("~/images/delete.png")' />

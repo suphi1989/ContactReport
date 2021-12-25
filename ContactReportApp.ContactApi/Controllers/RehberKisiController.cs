@@ -79,7 +79,7 @@ namespace ContactReportApp.ContactApi.Controllers
 
                 foreach (var iletisimBilgi in iletisimBilgileri)
                 {
-                    iletisimler.Add(new Iletisim() { BilgiTipi = iletisimBilgi.BilgiTipi.ToString(), BilgiIcerigi = iletisimBilgi.BilgiIcerigi });
+                    iletisimler.Add(new Iletisim() { Id = iletisimBilgi.Id, BilgiTipi = iletisimBilgi.BilgiTipi.ToString(), BilgiIcerigi = iletisimBilgi.BilgiIcerigi });
                 }
 
                 return Ok(iletisimler);
@@ -112,7 +112,7 @@ namespace ContactReportApp.ContactApi.Controllers
       
         [Route("KisiKaldir")]
         [HttpPost]
-        public ActionResult<string> KisiKaldir(int KisiId)
+        public ActionResult<string> KisiKaldir([FromBody] int KisiId)
         {
             try
             {
@@ -163,13 +163,13 @@ namespace ContactReportApp.ContactApi.Controllers
             }
         }
 
-        [Route("KisiIletisimBilgileriKaldir")]
+        [Route("KisiIletisimBilgileriKaldir/{Id:int}")]
         [HttpPost]
-        public ActionResult<string> KisiIletisimBilgileriKaldir(int KisiId)
+        public ActionResult<string> KisiIletisimBilgileriKaldir([FromRoute] int Id,[FromBody] int KisiId)
         {
             try
             {
-                var iletisimler = _context.IletisimBilgileri.Where(x => x.KisiId == KisiId).ToList();
+                var iletisimler = _context.IletisimBilgileri.Where(x => x.KisiId == KisiId && x.Id == Id).ToList();
                 if (iletisimler.Count > 0)
                 {
                     _context.RemoveRange(iletisimler);

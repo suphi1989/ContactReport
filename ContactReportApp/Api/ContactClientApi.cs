@@ -30,5 +30,28 @@ namespace ContactReportApp.Api
             var result = _restApi.Execute<List<KisiBilgileriModel>>(request);
             return result.Data;
         }
+
+        public void DeleteContact(int kisiId)
+        {
+            var request = GetRequest(Method.POST, "RehberKisi/KisiKaldir");
+            request.AddBody(kisiId);
+            _restApi.Execute(request);
+        }
+
+        public void DeleteContactDetay(int Id,int KisiId)
+        {
+            var request = GetRequest(Method.POST, string.Format("RehberKisi/KisiIletisimBilgileriKaldir/{0}", Id));
+            request.AddBody(KisiId);
+            var r = _restApi.Execute<string>(request);
+        }
+
+        public List<KisiIletisimBilgileriModel> GetContactDetay(int kisiId)
+        {
+            var request = GetRequest(Method.GET, "RehberKisi/IletisimBilgileriGetir");
+            request.AddParameter("KisiId", kisiId);
+            var result = _restApi.Execute<List<KisiIletisimBilgileriModel>>(request);
+            return result.Data;
+
+        }
     }
 }

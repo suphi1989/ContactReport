@@ -52,11 +52,10 @@ namespace ContactReportApp.Controllers
         {
             if (!string.IsNullOrEmpty(model.Arama))
             {
-                string result = _reportClientApi.ReportCreate(model.Arama);
+                string result = _reportClientApi.CreateReport(model.Arama);
                 TempData["ReportCreated"] = result;
             }
-            var raporlar = _reportClientApi.GetReportList();
-            return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
+            return ReportList();
         }
         
         public IActionResult RaporuKaldir(int RaporId)
@@ -70,11 +69,9 @@ namespace ContactReportApp.Controllers
             if (System.IO.File.Exists(dosyaYolu2))
                 System.IO.File.Delete(dosyaYolu2);
 
-            _reportClientApi.ReportDelete(RaporId);
+            _reportClientApi.DeleteReport(RaporId);
 
-            var raporlar = _reportClientApi.GetReportList();
-
-            return View("ReportView", new ReportViewModel() { raporListesi = raporlar });
+            return ReportList();
         }
 
 
@@ -84,11 +81,33 @@ namespace ContactReportApp.Controllers
 
             return View("ContactView", new ContactViewModel() { Kisiler = kisiler });
         }
-        public IActionResult CreateContact()
+        
+        public IActionResult KisiKaldir(int KisiId)
         {
-            return Ok();
+            _contactClientApi.DeleteContact(KisiId);
+
+            return ContactList();
         }
 
+        public IActionResult KisiIletisimBilgileri(int KisiId)
+        {
+            ViewData["KisiId"] = KisiId;
+            var iletisimBilgileriList = _contactClientApi.GetContactDetay(KisiId);
+            return View("ContactDetailView", new ContactViewModel() { IletisimBilgileri = iletisimBilgileriList });
+        }
+        
+        public IActionResult KisiIletisimKaldir(int Id, int KisiId)
+        {
+            _contactClientApi.DeleteContactDetay(Id, KisiId);
+
+            return KisiIletisimBilgileri(KisiId);
+        }
+
+
+        public IActionResult KisiOlustur()
+        {
+            return View("CreateContactView");
+        }
         public IActionResult Privacy()
         {
             return View();
