@@ -19,7 +19,6 @@ namespace ContactReportApp.Controllers
         private ContactClientApi _contactClientApi;
         private ReportClientApi _reportClientApi;
 
-
         static volatile public bool isStartConsume;
 
         public HomeController(ILogger<HomeController> logger, ConsumerConfig config)
@@ -103,11 +102,34 @@ namespace ContactReportApp.Controllers
             return KisiIletisimBilgileri(KisiId);
         }
 
-
-        public IActionResult KisiOlustur()
+        public IActionResult KisiOlusturView()
         {
             return View("CreateContactView");
         }
+        
+        public IActionResult KisiOlustur(CreateContactViewModel model)
+        {
+            if (string.IsNullOrEmpty(model.Ad) || string.IsNullOrEmpty(model.Soyad))
+            {
+                TempData["KisiCreated"] = "Lütfen Adı ve Soyadı giriniz";
+
+                return View("CreateContactView");
+            }
+
+            var gelenId = _contactClientApi.CreateContact(model);
+
+            if (gelenId > 0)
+                return ContactList();
+            else
+            {
+                TempData["KisiCreated"] = "Kişi kaydı oluştururken bir hata oluştu";
+
+                return View("CreateContactView");
+            }
+        }
+
+        
+        
         public IActionResult Privacy()
         {
             return View();

@@ -53,5 +53,17 @@ namespace ContactReportApp.Api
             return result.Data;
 
         }
+
+        public int CreateContact(CreateContactViewModel model)
+        {
+            var request = GetRequest(Method.POST, "RehberKisi/KisiOlustur");
+            request.AddBody(model);
+            var response = _restApi.Execute<int>(request);
+            if (response != null && response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return response.Data;
+            }
+            else return 0;
+        }
     }
 }

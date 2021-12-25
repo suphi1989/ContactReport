@@ -1,0 +1,39 @@
+﻿@model CreateContactViewModel
+
+@{
+    ViewData["Title"] = "Kişi Oluştur";
+}
+
+
+<div>
+    <h5>@ViewData["Title"]</h5>
+    <br />
+    @using (Html.BeginForm("KisiOlustur", "Home", FormMethod.Post, new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ad, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Soyad, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Firma, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.Firma, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <input type="submit" value="Kişi Oluştur" class="btn btn-success btn-large" />
+            </div>
+        </div>
+
+        <p>@TempData["KisiCreated"]</p>
+    }
+</div>
