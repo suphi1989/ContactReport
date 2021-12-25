@@ -1,2 +1,6 @@
-bin/ 	# ignore bin directory
-obj/ 	# ignore obj directory 
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
