@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,6 +74,15 @@ namespace ContactReportApp.Controllers
             return ReportList();
         }
 
+        public IActionResult RaporuIndir(string DosyaYolu,string RaporId)
+        {
+            string filePath = DosyaYolu;
+            string fileName = "rapor_" + RaporId + ".xlsx";
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+        }
 
         public IActionResult ContactList()
         {

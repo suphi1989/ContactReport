@@ -31,14 +31,18 @@
         </thead>
         <tbody>
             @{
-                if (Model !=null && Model.raporListesi != null && Model.raporListesi.Count > 0)
+                if (Model != null && Model.raporListesi != null && Model.raporListesi.Count > 0)
                 {
                     foreach (var rapor in Model.raporListesi)
                     {
                         <tr>
                             <th scope="row">@rapor.Id</th>
                             <td>@rapor.RaporTarihi</td>
-                            <td>@rapor.DosyaYolu</td>
+                            <td>
+                                <a href='@Url.Action("RaporuIndir", "Home",new { DosyaYolu=rapor.DosyaYolu, RaporId=rapor.Id  })'>
+                                    @rapor.DosyaYolu
+                                </a>
+                            </td>
                             <td>@(rapor.RaporDurumu==RaporDurum.Tamamlandi? "Tamamlandı" : "Hazırlanıyor")</td>
                             <td>
                                 <a href='@Url.Action("RaporuKaldir", "Home",new { RaporId=rapor.Id })' onclick="return confirm('Kaydı silmek istiyorsun, emin misin?')">
