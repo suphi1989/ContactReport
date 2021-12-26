@@ -16,16 +16,6 @@ namespace ContactReportApp.ReportApi.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Rapor>().HasData(
-               new Rapor
-               {
-                   Id = 1,
-                   RaporTarihi = DateTime.Now,
-                   DosyaYolu = "test yolu",
-                   RaporDurumu = RaporDurum.Tamamlandi
-               }
-           );
         }
         public DbSet<Rapor> Raporlar { get; set; }
     }

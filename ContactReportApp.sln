@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReportApp", "Contact
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReportApp.ContactApi", "ContactReportApp.ContactApi\ContactReportApp.ContactApi.csproj", "{F3A3677D-CA65-478B-B1B1-4E0A51DB2392}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReport.Tests", "ContactReport.Tests\ContactReport.Tests.csproj", "{55AC8E5D-89C0-4DE2-9A3A-3EAC3F4A6C3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReportApp.Tests", "ContactReportApp.Tests\ContactReportApp.Tests.csproj", "{55AC8E5D-89C0-4DE2-9A3A-3EAC3F4A6C3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactReportApp.ReportApi", "ContactReportApp.ReportApi\ContactReportApp.ReportApi.csproj", "{3C5B2337-8EE9-48D1-AEF3-FF29A9F6C9A4}"
 EndProject
