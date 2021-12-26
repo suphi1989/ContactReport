@@ -23,12 +23,12 @@
 -  ContactReportApp Proje nasıl çalışır?
    
    1 - DB Migration: bize iki veritabanı vardır "contactdb" ve "reportdb" ikisini için aynı şekilde Migration oluyor. <br />
-       - Add-Migration --> Name: contactdb <br />
-       - Update-Database <br />
+        - Add-Migration --> Name: contactdb <br />
+        - Update-Database <br />
 
    2 - Kafka Message Queue sistemi kurulum ve çalışması için bir kaç adım vardır. <br />
-       JRE8 için tools klasörde ekldim, indirdikten sonra JAVA_HOME parametre Sistem Ortam Değişkenleri pencerede eklemesi gerekiyor, zookeeper ve kafka için ben tools klasör içinde indirdim ve ayarladım.
-       Zookeeper ve Kafka server çalıştırması için bir kaç komut vardır ve topic adı için ben örnek olarak "report-topic" adını verdim. Start Producer ve Start Consumer komut çok önemli değil onlar sadece giden ve gelen veri gelmesi kontrol etmek için.
+       JRE8 için tools klasörde ekldim, indirdikten sonra JAVA_HOME parametre Sistem Ortam Değişkenleri pencerede eklemesi gerekiyor, zookeeper ve kafka için ben tools klasör içinde indirdim ve ayarladım.<br />
+       Zookeeper ve Kafka server çalıştırması için bir kaç komut vardır ve topic adı için ben örnek olarak "report-topic" adını verdim. Start Producer ve Start Consumer komut çok önemli değil onlar sadece giden ve gelen veri gelmesi kontrol etmek için.<br />
  
         
         JRE8	--->	http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
@@ -54,6 +54,6 @@
 
 
 
-
+    3 - İki api ve proje başlatması için solution explorer pencereden Solution 'ContactReportApp' seçiniz, properties pencere açınız ve multiple startup projects seçiniz,(ContactReportApp.ContactApi ,ContactReportApp.ReportApi ve ContactReportApp) için start comboboxten ayarlabilirsiniz . <br />
  
 
