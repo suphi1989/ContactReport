@@ -4,8 +4,8 @@
 - ContactReportApp Proje İki api, bir web uygulaması apiler çağırmak için ve unit test class library kod test etmek için.
 
 - Uygulama işleri:
-    • Rehberde kişi oluşturma 
-    • Rehberde kişi kaldırma 
+    • Rehberde kişi oluşturma <br />
+    • Rehberde kişi kaldırma  <br />
     • Rehberdeki kişiye iletişim bilgisi ekleme 
     • Rehberdeki kişiden iletişim bilgisi kaldırma 
     • Rehberdeki kişilerin listelenmesi 
