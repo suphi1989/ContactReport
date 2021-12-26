@@ -56,6 +56,8 @@
 
 
     3 - İki api ve proje başlatması için solution explorer pencereden Solution 'ContactReportApp' seçiniz, properties pencere açınız ve multiple startup projects seçiniz,(ContactReportApp.ContactApi ,ContactReportApp.ReportApi ve ContactReportApp) için 'Start' combobox'ten ayarlabilirsiniz . <br />
+        - ContactReportApp.ReportApi Url: https://localhost:44333  <br />
+        - ContactReportApp.ContactApi Url: https://localhost:44305  <br />
 
     4-  Bu şekilde her şey ayarlandı ve proj başlatabilirsiniz, kişi listesi ve rapor listesi pencereler açılacak, deneyebilirsiniz. Bu kadar, README dosyası okumak için teşekkür ederim.
  
