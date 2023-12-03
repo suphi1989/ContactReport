@@ -60,5 +60,10 @@
         - ContactReportApp.ContactApi Url: https://localhost:44305  <br />
 
     4-  Bu şekilde her şey ayarlandı ve proj başlatabilirsiniz, kişi listesi ve rapor listesi pencereler açılacak, deneyebilirsiniz. Bu kadar, README dosyası okumak için teşekkür ederim.
+
+
+   ContactReportApp.mp4
+
+   https://drive.google.com/file/d/1O3UWPHDZd4EnKxhX36vmxNLOPDo6XS_I/view?usp=sharing
  
 
